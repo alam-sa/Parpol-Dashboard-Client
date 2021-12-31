@@ -1,7 +1,20 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import { NavLink } from 'react-router-dom'
 
 const SideNav = () => {
+
+  // const { logo, nama_parpol } = useSelector(state => state.parpol);
+  const [data, setData] = useState({
+    logo: '',
+    nama_parpol: ''
+  })
+  useEffect(() => {
+    setData({
+      ...data,
+      logo: localStorage.getItem('logo'),
+      nama_parpol: localStorage.getItem('partai')
+    })
+  }, [])
   function logout() {
         localStorage.clear();
   }
@@ -10,8 +23,8 @@ const SideNav = () => {
            <aside className="main-sidebar sidebar-dark-primary elevation-4">
             {/* Brand Logo */}
             <NavLink className="brand-link" to='#'>
-                <img src="logo1.png" alt="KPU Logo" className="brand-image img-circle elevation-3" style={{opacity: '.8'}} />
-                <span className="brand-text font-weight-light">KPU KAB GOWA</span>
+                <img src={data.logo} alt="KPU Logo" className="logo p-2" style={{height: '40px', width: '40px'}} />
+                <span className="brand-text font-weight-light" style={{fontSize: '12px'}}>{data.nama_parpol}</span>
             </NavLink>
             {/* Sidebar */}
             <div className="sidebar">
@@ -70,41 +83,12 @@ const SideNav = () => {
                     </li>
                     {/* .verivikasi */}
 
-                    {/* master data */}
-                    <li className="nav-item">
-                    <a className="nav-link" to="#">
-                        <i className="nav-icon fas fa-database" />
-                        <p>
-                        Master Data
-                        <i className="fas fa-angle-left right" />
-                        </p>
-                    </a>
-                    <ul className="nav nav-treeview">
-                        <li className="nav-item">
-                            <div className="ml-3">
-                                <NavLink className="nav-link" to="/dapil">
-                                    <i className="fas fa-chart-area nav-icon" />
-                                        <p>Dapil</p>
-                                </NavLink>
-                            </div>
-                        </li>
-                        <li className="nav-item">
-                            <div className="ml-3">
-                                <NavLink className="nav-link" to="/partai">
-                                    <i className="fas fa-flag nav-icon" />
-                                    <p>Partai</p>
-                                </NavLink>
-                            </div>
-                        </li>
-                    </ul>
-                    </li>
-                    {/* .master data */}
                     {/* Pengguna */}
                     <li className="nav-item">
                     <a className="nav-link" to="#">
                         <i className="nav-icon fas fa-user-cog" />
                         <p>
-                        Pengguna
+                        Administrator
                         <i className="fas fa-angle-left right" />
                         </p>
                     </a>
@@ -113,7 +97,7 @@ const SideNav = () => {
                             <div className="ml-3">
                                 <NavLink className="nav-link" to="/pengguna/tambah">
                                     <i className="fas fa-user-plus nav-icon" />
-                                    <p>Tambah Pengguna</p>
+                                    <p>Tambah Admin</p>
                                 </NavLink>
                             </div>
                         </li>
@@ -121,7 +105,7 @@ const SideNav = () => {
                             <div className="ml-3">
                                 <NavLink className="nav-link" to="/pengguna/list">
                                     <i className="fas fa-users nav-icon" />
-                                    <p>Daftar Pengguna</p>
+                                    <p>Daftar Admin</p>
                                 </NavLink>
                             </div>
                         </li>

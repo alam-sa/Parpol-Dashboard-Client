@@ -23,7 +23,7 @@ const Verifikasi = () => {
                 <div className="container-fluid">
                 <div className="row mb-2">
                     <div className="col-sm-6">
-                    <h1 className="m-0">Verifikasi Calon Anggota Legislatif</h1>
+                    <h1 className="m-0">VERIFIKASI BACALEG</h1>
                     </div>{/* /.col */}
                     <div className="col-sm-6">
                     <ol className="breadcrumb float-sm-right">

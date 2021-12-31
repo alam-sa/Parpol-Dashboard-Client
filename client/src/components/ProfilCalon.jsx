@@ -1,8 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import moment from 'moment';
 import DatePicker from 'react-date-picker';
-import { useDispatch, useSelector } from 'react-redux';
-import { getProvinces, getDistricts, getDapils, getParpols } from '../store/action';
 import axios from '../api/config'
 import Select from 'react-select'
 import { toast } from 'react-toastify';
@@ -31,12 +29,62 @@ const ProfilCalon = ({loading, caleg, dapil, parpol}) => {
     kecamatan: JSON.parse(caleg.kecamatan),
     alamat: caleg.alamat
   });
+  const [noUrut, setNoUrut] = useState({
+    temp: null,
+    caleg: caleg.no_urut
+  })
 
   useEffect(() => {
     
   },[caleg]);
 
+  function updateNoUrut() {
+    console.log(noUrut);
 
+    let payload = {
+      no_urut: noUrut.temp,
+      partaiId: localStorage.getItem('partaiId')
+    }
+    axios({
+      method: "PATCH",
+      url: `caleg/noUrut/${caleg.id}`,
+      data: payload,
+      headers: {
+        access_token: localStorage.getItem('access_token')
+      }
+    }).then(({data}) => {
+      
+      setNoUrut({
+        ...noUrut,
+        caleg: noUrut.temp
+      })
+
+      setProfil({
+        ...profil,
+        no_urut: noUrut.temp
+      })
+      toast.success(data.message, {
+        position: "top-center",
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+    });
+    }).catch(err => {
+      console.log(err);
+      toast.error(err.response.data.message[0], {
+        position: "top-center",
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+      });
+    })
+  }
     return (
         <React.Fragment>
           {
@@ -51,12 +99,24 @@ const ProfilCalon = ({loading, caleg, dapil, parpol}) => {
                           <div className='p-4 text-muted card mb-3 '>
                           <label htmlFor="foto_profil">Foto Calon</label>
                           <div className="d-flex ">
-                              <div className='card mb-0' style={{width:"150px", height:"150px", minWidth:'150px'}}>
+                              <div className='card mb-3' style={{width:"150px", height:"150px", minWidth:'150px'}}>
                                   <input type="file" className='d-none' id='logo'/>
                                       <img src={profil.foto_profil ? `${profil.foto_profil}` : "avatar.jpg"} height="150px"  width="150px" alt="" htmlFor={'logo'} />
                               </div>
-                              <h3 className="ml-5">Nomor Urut: {profil.no_urut ? profil.no_urut : '-'}</h3>
+                              
+                              <h3 className="ml-5" >Nomor Urut: {profil.no_urut }</h3>
                           </div>
+                          {
+                                noUrut.caleg ?
+                               <button onClick={(e) => setNoUrut(e.target.value)} className='btn btn-danger'>Ganti No. Urut</button>
+                                :
+                                <div className="input-group mb-3">
+                                  <input onChange={(e) => setNoUrut({ ...noUrut, temp: e.target.value})} type="number" className="form-control" placeholder="Masukkan Nomor Urut" aria-label="Nomor Urut" aria-describedby="button-addon2" />
+                                  <button onClick={updateNoUrut} className="btn btn-outline-primary" type="button" id="button-addon2">Simpan</button>
+                                </div>
+
+
+                              }
                       </div>
                               {/* <label htmlFor="noUrut">Nomor Urut</label>
                               <input type="text" className="form-control mb-3" id="noUrut" value={caleg.no_urut} disabled /> */}

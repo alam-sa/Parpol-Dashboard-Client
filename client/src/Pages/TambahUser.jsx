@@ -1,6 +1,6 @@
 import React from "react";
 import AddUser from "../components/AddUser";
-import { NavLink, Outlet } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 
 const TambahUser = () => {
 
@@ -12,7 +12,7 @@ const TambahUser = () => {
                 <div className="container-fluid">
                 <div className="row mb-2">
                     <div className="col-sm-6">
-                    <h1 className="m-0">Tambah Admin KPU</h1>
+                    <h1 className="m-0">TAMBAH ADMIN {localStorage.getItem('partai')}</h1>
                     </div>{/* /.col */}
                     <div className="col-sm-6">
                     <ol className="breadcrumb float-sm-right">

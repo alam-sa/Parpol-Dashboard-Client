@@ -1,7 +1,11 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import { NavLink } from 'react-router-dom'
 
 const Home = () => {
+  
+  useEffect(() => {
+    
+  },[])
     return (
         <React.Fragment>
              <div className="content-wrapper">
@@ -15,7 +19,7 @@ const Home = () => {
                     <div className="col-sm-6">
                     <ol className="breadcrumb float-sm-right">
                         <li className="breadcrumb-item"><NavLink to="/dashboard">Home</NavLink></li>
-                        <li className="breadcrumb-item active">Dashboard KPU</li>
+                        <li className="breadcrumb-item active">Dashboard</li>
                     </ol>
                     </div>{/* /.col */}
                 </div>{/* /.row */}

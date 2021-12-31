@@ -1,6 +1,6 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import axios from '../api/config';
-import { useNavigate, Link, Navigate } from 'react-router-dom';
+import { useNavigate, Link } from 'react-router-dom';
 import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import styled from "styled-components";
@@ -89,7 +89,7 @@ function Login() {
         event.preventDefault();
         axios({
             method: 'POST',
-            url: `user/login`,
+            url: `parpolUser/login`,
             data: {
                 email: user.email,
                 password: user.password
@@ -106,6 +106,9 @@ function Login() {
                     progress: undefined,
                 });
                 localStorage.setItem('access_token', response.data.access_token);
+                localStorage.setItem('logo', response.data.logo);
+                localStorage.setItem('partai', response.data.partai);
+                localStorage.setItem('partaiId', response.data.partaiId);
                 // localStorage.setItem('status', response.data.status)
                 // history.push(`/dashboard`);
                 dispatch(setAuth(true))
@@ -157,7 +160,7 @@ function Login() {
                                         <div className="card-body">
                                             <div className="tab-content">
                                                 <div className="tab-pane active mx-4" id="sign-in">
-                                                    <h2>Login</h2>
+                                                    <h2>Login Parpol</h2>
                                                     {
                                                         !isEmailFound ? (
                                                             <React.Fragment>
@@ -215,14 +218,14 @@ function Login() {
                                                                         onChange={handleCaptcha}
                                                                     /> */}
                                                                 <KPUButton onClick={(event) => handleSubmit(event)} style={{ width: '100%' }} className="btn mb-3">Login</KPUButton>
-                                                                <div className="d-flex align-items-center justify-content-between mt-10">
+                                                                {/* <div className="d-flex align-items-center justify-content-between mt-10">
                                                                     <div className="col-lg-6 col-sm-12">
                                                                         <p>Don't have an account?</p>
                                                                     </div>
                                                                     <div className="d-flex col-lg-6 col-sm-12 justify-content-lg-end justify-content-sm-start">
                                                                         <p><Link to="/register" style={{color: '#e78421'}} >Create your Account!</Link></p>
                                                                     </div>
-                                                                </div>
+                                                                </div> */}
                                                             </React.Fragment>
                                                         )
                                                     }

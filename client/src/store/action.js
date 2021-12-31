@@ -72,6 +72,14 @@ export function setLoadingParpols(payload) {
   return { type: 'LOADING/CHANGELOADINGPARPOLS', payload }
 }
 
+export function setParpolName(payload) {
+  return { type: 'PARPOL/ADDPARPOLNAME', payload }
+}
+
+export function setLogoParpol(payload) {
+  return { type: 'PARPOL/ADDLOGOPARPOL', payload }
+}
+
 // DAPIL
 export function setDapils(payload) {
   return { type: 'DAPIL/ADDDAPILLIST', payload }
@@ -187,7 +195,7 @@ export function getCalegRegistered() {
     try {
       dispatch(setLoadingCaleg(true));
       await axios({
-        url: `caleg/filter/register`,
+        url: `caleg/filter/register/${localStorage.getItem('partaiId')}`,
         method: 'GET',
         headers: {
           access_token: localStorage.getItem('access_token')
@@ -214,7 +222,7 @@ export function getCalegValidate() {
     try {
       dispatch(setLoadingCaleg(true));
       await axios({
-        url: `caleg/filter/validasi`,
+        url: `caleg/filter/validasi/${localStorage.getItem('partaiId')}`,
         method: 'GET',
         headers: {
           access_token: localStorage.getItem('access_token')
@@ -242,7 +250,7 @@ export function getCalegVerified() {
     try {
       dispatch(setLoadingCaleg(true));
       await axios({
-        url: `caleg/filter/verified`,
+        url: `caleg/filter/verified/${localStorage.getItem('partaiId')}`,
         method: 'GET',
         headers: {
           access_token: localStorage.getItem('access_token')
@@ -265,13 +273,13 @@ export function getCalegVerified() {
   }
 }
 
-// ADMIN KPU
+// ADMIN Parpol
 export function getUsers() { 
   return async (dispatch) => {
     try {
       dispatch(setLoadingUsers(true))
       await axios({
-        url: `user`,
+        url: `parpolUser/all/${localStorage.getItem('partaiId')}`,
         method: 'GET',
         headers: {
           access_token: localStorage.getItem('access_token')
@@ -297,7 +305,7 @@ export function updateActiveUser(id, payload) {
     try {
       dispatch(setLoadingUsers(true))
       await axios({
-        url: `user/status/${id}`,
+        url: `parpolUser/status/${id}`,
         method: 'PATCH',
         data: {is_active},
         headers: {
@@ -327,7 +335,7 @@ export function updateActiveUser(id, payload) {
           pauseOnHover: true,
           draggable: true,
           progress: undefined,
-      });
+        });
       })
     } catch(err) {
       console.log(err);
@@ -339,7 +347,7 @@ export function addUser(payload) {
     try {
       dispatch(setLoadingUsers(true))
       await axios({
-        url: `user/addadmin`,
+        url: `parpolUser/admin/${localStorage.getItem('partaiId')}`,
         method: 'POST',
         data: payload,
         headers: {

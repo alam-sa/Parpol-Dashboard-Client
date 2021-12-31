@@ -1,6 +1,7 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import { useDispatch } from "react-redux";
 import { addUser } from "../store/action";
+
  const AddUser =() => {
   const [isPasswordVisible, setIsPasswordVisible] = useState(false);
   const [data, setData] = useState({

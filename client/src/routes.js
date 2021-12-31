@@ -4,15 +4,11 @@ import Home from './Pages/Home';
 import DaftarCaleg from './Pages/DaftarCaleg';
 import DaftarBacaleg from './Pages/DaftarBacaleg';
 import Verifikasi from './Pages/Verifikasi';
-import DaftarAdminKPU from './Pages/DaftarAdminKPU';
+import DaftarAdminParpol from './Pages/DaftarAdminParpol';
 import TambahUser from './Pages/TambahUser';
-import Footer from './components/Footer';
 import Header from './components/Header';
 import SideNav from './components/SideNav';
 import DetailCalon from './Pages/DetailCalon';
-import ProfilCalon from './components/ProfilCalon';
-import TambahDapil from './Pages/TambahDapil';
-import TambahPartai from './Pages/TambahPartai';
 import DataCalon from './Pages/DataCalon';
 
 const routes = (isLoggedIn) => [
@@ -30,21 +26,13 @@ const routes = (isLoggedIn) => [
       { path: '/caleg', element: <DaftarCaleg /> },
       { path: '/bacaleg', element: <DaftarBacaleg /> },
       { path: '/detail', element: <DataCalon /> },
-      { path: '/dapil', element: <TambahDapil /> },
-      { path: '/partai', element: <TambahPartai /> },
-      { path: 'verifikasi/user', element: <DetailCalon /> },,
+      { path: 'verifikasi/user', element: <DetailCalon /> },
       {
         path: 'verifikasi',
         element: <Verifikasi />,
-        // children: [
-        //   { path: 'user/:id', element: <DetailCalon /> },
-        // ],
       },
-      // {
-      //   path: 'verifikasi/user/:id', element: <DetailCalon /> },
-      // },
       { path: '/pengguna/tambah', element: <TambahUser /> },
-      { path: '/pengguna/list', element: <DaftarAdminKPU /> },
+      { path: '/pengguna/list', element: <DaftarAdminParpol /> },
       { path: '/', element: <Navigate to="/dashboard" /> },
     ],
   },

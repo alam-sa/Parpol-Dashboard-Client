@@ -2,7 +2,7 @@ import React from "react";
 import TableAdmin from "../components/TableAdmin";
 import { NavLink, Outlet } from "react-router-dom";
 
-const DaftarAdminKPU = () => {
+const DaftarAdminParpol = () => {
 
   return (
     <React.Fragment>
@@ -12,11 +12,11 @@ const DaftarAdminKPU = () => {
                 <div className="container-fluid">
                 <div className="row mb-2">
                     <div className="col-sm-6">
-                    <h1 className="m-0">Daftar Admin KPU</h1>
+                    <h1 className="m-0">DAFTAR ADMIN {localStorage.getItem('partai')}</h1>
                     </div>{/* /.col */}
                     <div className="col-sm-6">
                     <ol className="breadcrumb float-sm-right">
-                        <li className="breadcrumb-item"><NavLink to="/dashboard">Pengguna</NavLink></li>
+                        <li className="breadcrumb-item"><NavLink to="/dashboard">Administrator</NavLink></li>
                         <li className="breadcrumb-item active">Admin</li>
                     </ol>
                     </div>
@@ -43,4 +43,4 @@ const DaftarAdminKPU = () => {
   )
 }
 
-export default DaftarAdminKPU
+export default DaftarAdminParpol

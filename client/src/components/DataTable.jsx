@@ -1,8 +1,7 @@
 import React, { useEffect, useState } from "react";
 import DataTable, { memoize } from 'react-data-table-component';
 import { useDispatch, useSelector } from "react-redux";
-import { Link, useLocation } from "react-router-dom";
-import { getCalegValidate } from "../store/action";
+import { Link } from "react-router-dom";
 import moment from 'moment'
 
 var idLocale = require('moment/locale/id'); 

@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from "react";
-import DataTable, { memoize } from 'react-data-table-component';
+import DataTable from 'react-data-table-component';
 import { useDispatch, useSelector } from "react-redux";
-import { Link, useLocation } from "react-router-dom";
 import { deleteUser, getUsers, updateActiveUser } from "../store/action";
 
 const Table = () => {
@@ -34,11 +33,11 @@ const columns = [
       selector: row => row.email
   },
   
-  {
-      name: 'Jenis Akun',
-      selector: row => row.UserLevel.user_level,
-      sortable: true,
-  },
+  // {
+  //     name: 'Jenis Akun',
+  //     selector: row => row.UserLevel.user_level,
+  //     sortable: true,
+  // },
   {
     name: 'Status',
     selector: row => row.is_active ? 'Aktif' : "Non Aktif",

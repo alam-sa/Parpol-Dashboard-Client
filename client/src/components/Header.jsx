@@ -1,7 +1,11 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import { Link } from 'react-router-dom'
 
 const Header = () => {
+
+  useEffect(() => {
+
+  },[])
     return (
         <div>
            {/* Navbar */}
@@ -12,7 +16,7 @@ const Header = () => {
                 <a className="nav-link" data-widget="pushmenu" href="#" role="button"><i className="fas fa-bars" /></a>
                 </li>
                 <li className="nav-item d-none d-sm-inline-block">
-                <Link to="/dashboard" className="nav-link">Dashboard KPU</Link>
+                <Link to="/dashboard" className="nav-link">DASHBOARD {localStorage.getItem('partai')}</Link>
                 </li>
             </ul>
             {/* Right navbar links */}
